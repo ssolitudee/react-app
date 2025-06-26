@@ -197,7 +197,17 @@ inventory-analyzer-ai/
    npm install --save-dev eslint@8.56.0 prettier@3.2.5
    ```
 
-8. Return to the project root:
+8. Install Heroicons (for icons used throughout the application):
+   ```
+   npm install @heroicons/react@2.1.1
+   ```
+
+9. Install React Testing Library for component testing:
+   ```
+   npm install --save-dev @testing-library/react@14.2.1 @testing-library/jest-dom @testing-library/user-event
+   ```
+
+10. Return to the project root:
    ```
    cd ..
    ```
