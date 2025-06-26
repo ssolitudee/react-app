@@ -1,0 +1,195 @@
+# Inventory Analyzer AI - Product Requirements Document
+
+## Overview  
+Inventory Analyzer AI is a fullstack web application featuring an AI chatbot designed to help users analyze inventory data. The application provides two specialized AI agents - a Summary Agent for concise data analysis and a Chatbot Agent for interactive conversations. The platform stores chat histories for future reference and offers quick access to frequently asked questions.
+
+## Core Features  
+### 1. Interactive Chat Interface
+- What it does: Provides a clean, intuitive interface for users to interact with AI agents
+- Why it's important: Creates a seamless user experience and makes complex inventory analysis accessible
+- How it works: React-based frontend with real-time message display and history tracking
+
+### 2. Dual AI Agents
+- What it does: Offers two specialized AI agents (Summary Agent and Chatbot Agent)
+- Why it's important: Provides flexibility for different user needs - quick summaries vs. detailed conversations
+- How it works: LangChain-powered AI integration with specialized prompting for each agent type
+
+### 3. Chat History Management
+- What it does: Stores and displays previous conversations in a sidebar
+- Why it's important: Allows users to reference past analyses and continue previous conversations
+- How it works: Persistent storage of chat logs with easy navigation and retrieval
+
+### 4. FAQ Quick Access
+- What it does: Displays common inventory analysis questions in a 2x2 grid
+- Why it's important: Speeds up common queries and helps new users understand system capabilities
+- How it works: Pre-configured questions that auto-populate the chat input when selected
+
+## User Experience  
+### User Personas
+1. Inventory Managers - Need quick insights into inventory status and trends
+2. Supply Chain Analysts - Require detailed analysis of inventory movement and forecasting
+3. Operation Teams - Need straightforward answers to inventory-related questions
+
+### Key User Flows
+1. New Chat Initiation
+   - User lands on welcome screen
+   - Selects agent type (Summary or Chatbot)
+   - Begins conversation or selects FAQ
+
+2. Chat Interaction
+   - User sends messages
+   - AI responds with appropriate analysis
+   - Welcome screen is replaced with conversation thread
+
+3. History Navigation
+   - User views sidebar list of previous chats
+   - Selects a chat to continue
+   - Reviews previous conversation context
+
+### UI/UX Considerations
+- Clean, modern interface with clear hierarchy, darker color themes clean and nice
+- Prominent display of chatbot name at the top
+- Color-coded elements ("Hi" in darker red, "Inventory Analyzer AI" in white)
+- Responsive design for various device sizes
+- Clear visual distinction between user and AI messages
+
+## Technical Architecture  
+### System Components
+1. Frontend
+   - React for component-based UI
+   - Tailwind CSS for styling
+   - Context API for state management
+
+2. Backend
+   - FastAPI/Flask Python server
+   - RESTful API endpoints for chat functionality
+   - WebSocket support for real-time chatting (optional)
+
+3. AI Integration
+   - LangChain for chatbot framework
+   - Integration with language models
+   - Agent specialization logic
+
+4. Data Storage
+   - Database for chat history persistence
+   - User session management
+
+### Data Models
+1. Chat
+   - ID (unique identifier)
+   - Title (auto-generated from content)
+   - Created timestamp
+   - Last updated timestamp
+   - Agent type used
+
+2. Message
+   - ID (unique identifier)
+   - Chat ID (foreign key)
+   - Content (text)
+   - Role (user/assistant)
+   - Timestamp
+   - Metadata (optional)
+
+### APIs and Integrations
+1. `/chat` - Main endpoint for sending and receiving messages
+2. `/history` - Retrieve chat history
+3. `/faq` - Get predefined FAQ questions
+4. Integration with LangChain for AI processing
+
+### Infrastructure Requirements
+- Hosting for React frontend
+- Python server deployment
+- Database for chat storage
+- Optional caching layer for performance
+
+## Development Roadmap  
+### MVP Requirements
+1. Basic UI Implementation
+   - Landing page with welcome message
+   - Agent selection buttons
+   - Chat input and display
+   - Simple sidebar for history
+
+2. Core Chat Functionality
+   - Message sending and receiving
+   - Agent type selection
+   - Basic conversation flow
+
+3. Initial AI Integration
+   - LangChain setup
+   - Basic agent differentiation
+   - Text response generation
+
+### Future Enhancements
+1. Advanced Features
+   - Rich message formatting
+   - File upload for inventory data
+   - Data visualization components
+   - User authentication and profiles
+
+2. Performance Optimizations
+   - Response caching
+   - Optimized loading states
+   - Pagination for chat history
+
+3. Extended Capabilities
+   - Additional specialized agents
+   - Integration with inventory management systems
+   - Export functionality for chat logs and analyses
+
+## Logical Dependency Chain
+1. Foundation (Build First)
+   - Frontend project setup with React and Tailwind
+   - Basic UI components and layout
+   - Backend API structure with FastAPI/Flask
+
+2. Core Functionality
+   - Chat interface implementation
+   - Message display and input handling
+   - Sidebar and history UI components
+
+3. AI Integration
+   - LangChain setup in backend
+   - Agent specialization logic
+   - Connection between frontend and AI backend
+
+4. Enhanced Features
+   - FAQ section implementation
+   - Chat history persistence
+   - UI refinements and responsiveness
+
+## Risks and Mitigations  
+### Technical Challenges
+- Risk: AI response latency affecting user experience
+  Mitigation: Implement optimistic UI updates and loading states
+
+- Risk: Complexity in managing different agent behaviors
+  Mitigation: Clear abstraction layer in LangChain implementation
+
+### MVP Scope
+- Risk: Feature creep extending development timeline
+  Mitigation: Strictly prioritize core functionality for initial release
+
+- Risk: Frontend-backend integration complexities
+  Mitigation: Clear API contracts and comprehensive testing
+
+### Resource Constraints
+- Risk: Limited AI model performance
+  Mitigation: Optimize prompts and consider model fine-tuning
+
+- Risk: Scalability concerns with growing chat history
+  Mitigation: Implement efficient data storage and retrieval patterns
+
+## UI Mockup Description
+- Header: Chatbot name at top, "New Chat" button on right
+- Sidebar: Vertical list of historical chats on left
+- Welcome Screen: Firm logo, welcome message with "Hi" in darker red, "Inventory Analyzer AI" in white
+- Agent Selection: Two buttons - "Summary Agent" and "Chatbot Agent"
+- FAQ Section: 2x2 grid of common questions that auto-populate chat when clicked
+- Chat Input: Text field at bottom for user questions
+
+## Tech Stack Details
+- Frontend: React with Tailwind CSS
+- Backend: FastAPI or Flask (Python)
+- AI Framework: LangChain
+- Data Storage: TBD based on deployment constraints

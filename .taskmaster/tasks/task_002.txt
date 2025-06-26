@@ -1,0 +1,23 @@
+# Task ID: 2
+# Title: Implement Basic Frontend UI Components
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Create the foundational UI components for the chat interface using React 18.2.0 and Tailwind CSS 3.4.1.
+# Details:
+1. Set up Tailwind CSS v3.4.1 in the React v18.2.0 project
+2. Create reusable components for:
+   - Header (with chatbot name and 'New Chat' button)
+   - Sidebar (for chat history)
+   - Welcome Screen
+   - Agent Selection buttons
+   - FAQ grid
+   - Chat input field
+   - Message bubbles (for user and AI)
+3. Implement responsive design using Tailwind's utility classes
+4. Use React Context API for managing global state
+5. Integrate Heroicons v2.1.1 for icons throughout the UI
+6. Ensure compatibility with React 18.2.0 features and utilize appropriate hooks
+
+# Test Strategy:
+Create unit tests for each component using React Testing Library v14.2.1. Ensure responsiveness by testing on various screen sizes using browser dev tools. Test React 18.2.0 specific features like concurrent rendering where applicable.
