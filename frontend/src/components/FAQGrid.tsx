@@ -1,37 +1,47 @@
 import React from 'react';
-import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import { useAppContext } from '../context/AppContext';
 
 const FAQGrid: React.FC = () => {
-  const { faqs } = useAppContext();
+  const { faqs, createNewChatWithMessageAndResponse } = useAppContext();
+  
+  // Sample questions if no FAQs are available
+  const sampleQuestions = [
+    "What is the weather in Tokyo?",
+    "What is assistant-ui?",
+    "How do I analyze inventory data?",
+    "What reports can you generate?"
+  ];
   
   // Ensure we display exactly 4 FAQs in a 2x2 grid
-  const displayFaqs = faqs.slice(0, 4);
-  
+  const displayQuestions = faqs.length > 0 
+    ? faqs.slice(0, 4).map(faq => faq.question)
+    : sampleQuestions.slice(0, 4);
+    
   // If we have less than 4 FAQs, fill with placeholders
-  while (displayFaqs.length < 4) {
-    displayFaqs.push({
-      question: `Question ${displayFaqs.length + 1}`,
-      answer: 'Information will be provided here.'
-    });
+  while (displayQuestions.length < 4) {
+    displayQuestions.push(`Question ${displayQuestions.length + 1}`);
   }
 
+  const handleQuestionClick = (question: string) => {
+    createNewChatWithMessageAndResponse(question);
+  };
+
   return (
-    <div className="w-full">
-      <div className="flex items-center mb-2">
-        <QuestionMarkCircleIcon className="h-5 w-5 text-accent mr-2" />
-        <h2 className="text-lg font-bold text-white">Frequently Asked Questions</h2>
-      </div>
-      
-      <div className="grid grid-cols-2 gap-4">
-        {displayFaqs.map((faq, index) => (
-          <div 
-            key={index} 
-            className="bg-primary-light p-2 rounded-lg border border-gray-800 h-[65px] overflow-hidden flex flex-col"
+    <div className="w-full max-w-3xl mx-auto">
+      <h2 className="text-2xl font-medium text-white mb-4 text-center">
+        How can I help you today?
+      </h2>
+      <div className="grid grid-cols-2 gap-3">
+        {displayQuestions.map((question, index) => (
+          <button
+            key={index}
+            onClick={() => handleQuestionClick(question)}
+            className="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 p-4 rounded-lg text-left transition-all duration-200 hover:shadow-lg group"
           >
-            <h3 className="text-white font-semibold text-sm mb-1">{faq.question}</h3>
-            <p className="text-gray-400 text-xs flex-1">{faq.answer}</p>
-          </div>
+            <p className="text-gray-300 group-hover:text-white text-sm font-medium leading-relaxed">
+              {question}
+            </p>
+          </button>
         ))}
       </div>
     </div>

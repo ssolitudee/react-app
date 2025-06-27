@@ -12,10 +12,14 @@ const mockAppContextValue = {
   isDarkMode: true,
   selectedAgentType: 'summary' as 'summary' | 'chatbot',
   createNewChat: jest.fn(),
+  createNewChatWithMessage: jest.fn(),
+  createNewChatWithMessageAndResponse: jest.fn(),
   addMessage: jest.fn(),
+  addMessageToChat: jest.fn(),
   selectChat: jest.fn(),
   toggleDarkMode: jest.fn(),
   setAgentType: mockSetAgentType,
+  goToWelcomeScreen: jest.fn(),
 };
 
 const renderWithContext = (ui: React.ReactElement) => {

@@ -8,7 +8,14 @@ const ChatContainer: React.FC = () => {
 
   // Auto-scroll to bottom when new messages are added
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Use instant scroll to prevent layout shifts that might affect input positioning
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ 
+        behavior: 'auto',  // Changed from 'smooth' to 'auto' to prevent viewport interference
+        block: 'end',      // Scroll to the end of the element
+        inline: 'nearest'  // Don't interfere with horizontal scrolling
+      });
+    }
   }, [currentChat?.messages]);
 
   if (!currentChat) {
@@ -16,11 +23,11 @@ const ChatContainer: React.FC = () => {
   }
 
   return (
-    <div className="flex-1 p-4 overflow-y-auto">
-      <div className="flex flex-col space-y-2 pb-4">
+    <div className="flex-1 p-6 overflow-y-auto">
+      <div className="flex flex-col space-y-4 max-w-4xl mx-auto">
         {/* Agent type indicator */}
         <div className="text-center mb-6">
-          <span className="bg-primary-light text-gray-300 px-4 py-1 rounded-full text-sm">
+          <span className="bg-gray-800 text-gray-300 px-4 py-2 rounded-full text-sm border border-gray-700">
             {currentChat.agentType === 'summary' ? 'Summary Agent' : 'Chatbot Agent'}
           </span>
         </div>
@@ -41,7 +48,7 @@ const ChatContainer: React.FC = () => {
           ))
         )}
         
-        {/* Empty div for auto-scrolling to bottom */}
+        {/* Invisible element to scroll to */}
         <div ref={chatEndRef} />
       </div>
     </div>

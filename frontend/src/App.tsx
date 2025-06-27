@@ -7,6 +7,22 @@ import ChatContainer from './components/ChatContainer';
 import ChatInput from './components/ChatInput';
 import FAQGrid from './components/FAQGrid';
 import { useAppContext } from './context/AppContext';
+import logo from './assets/logo.svg';
+
+// Separate component for the logo button to properly use hooks
+const LogoButton: React.FC = () => {
+  const { goToWelcomeScreen } = useAppContext();
+  
+  return (
+    <button 
+      onClick={goToWelcomeScreen} 
+      className="flex items-center cursor-pointer transition-transform duration-200 hover:scale-105 hover:brightness-125 relative"
+      aria-label="Return to main page"
+    >
+      <img src={logo} alt="Logo" className="h-12 w-28" />
+    </button>
+  );
+};
 
 const AppContent: React.FC = () => {
   const { currentChat } = useAppContext();
@@ -17,13 +33,21 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-primary text-white">
-      <Header onSidebarToggle={toggleSidebar} />
+    <div className="h-screen flex flex-col bg-gray-900 text-white">
+      <div className="flex border-b border-gray-700">
+        <div className="w-64 md:flex hidden bg-gray-950 items-center p-4">
+          <LogoButton />
+        </div>
+        <div className="flex-1 border-l border-gray-700 bg-gray-950">
+          <Header onSidebarToggle={toggleSidebar} showLogo={false} />
+        </div>
+      </div>
       
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden relative">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
         
-        <div className="flex-1 flex flex-col overflow-hidden relative">
+        {/* Main content area with absolute positioned input */}
+        <div className="flex-1 relative overflow-hidden border-l border-gray-700">
           {/* Overlay for mobile sidebar */}
           {isSidebarOpen && (
             <div 
@@ -32,27 +56,28 @@ const AppContent: React.FC = () => {
             />
           )}
           
-          <div className="h-full flex flex-col">
+          {/* Content area with bottom padding to avoid overlap with fixed input */}
+          <div className="h-full overflow-hidden pb-20">
             {!currentChat ? (
-              <div className="flex flex-col h-full">
-                <div className="flex-grow flex flex-col items-center justify-center">
+              <div className="h-full flex flex-col">
+                {/* Welcome screen content */}
+                <div className="flex-1 flex flex-col items-center justify-center">
                   <WelcomeScreen />
                 </div>
-                <div className="flex-shrink-0 pt-3 pb-3 w-full px-2">
+                {/* FAQ section */}
+                <div className="flex-shrink-0 w-full px-2 pb-3">
                   <FAQGrid />
-                </div>
-                <div className="flex-shrink-0">
-                  <ChatInput />
                 </div>
               </div>
             ) : (
-              <>
-                <div className="flex-grow overflow-y-auto">
-                  <ChatContainer />
-                </div>
-                <ChatInput />
-              </>
+              /* Chat container */
+              <ChatContainer />
             )}
+          </div>
+          
+          {/* Input area - absolutely positioned at bottom */}
+          <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-gray-700">
+            <ChatInput />
           </div>
         </div>
       </div>

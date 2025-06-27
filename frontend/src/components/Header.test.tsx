@@ -5,6 +5,7 @@ import { AppContext } from '../context/AppContext';
 
 // Mock the context provider
 const mockCreateNewChat = jest.fn();
+const mockGoToWelcomeScreen = jest.fn();
 const mockAppContextValue = {
   chats: [],
   currentChat: null,
@@ -12,10 +13,14 @@ const mockAppContextValue = {
   isDarkMode: true,
   selectedAgentType: 'summary' as 'summary' | 'chatbot',
   createNewChat: mockCreateNewChat,
+  createNewChatWithMessage: jest.fn(),
+  createNewChatWithMessageAndResponse: jest.fn(),
   addMessage: jest.fn(),
+  addMessageToChat: jest.fn(),
   selectChat: jest.fn(),
   toggleDarkMode: jest.fn(),
   setAgentType: jest.fn(),
+  goToWelcomeScreen: mockGoToWelcomeScreen,
 };
 
 const renderWithContext = (ui: React.ReactElement) => {
@@ -63,5 +68,16 @@ describe('Header Component', () => {
     
     // Check if createNewChat was called (no arguments now)
     expect(mockCreateNewChat).toHaveBeenCalledTimes(1);
+  });
+
+  test('calls goToWelcomeScreen when logo is clicked', () => {
+    renderWithContext(<Header onSidebarToggle={mockSidebarToggle} />);
+    
+    // Find and click the logo button (containing the logo image and app title)
+    const logoButton = screen.getByRole('button', { name: /inventory analyzer ai logo inventory analyzer ai/i });
+    fireEvent.click(logoButton);
+    
+    // Check if goToWelcomeScreen was called
+    expect(mockGoToWelcomeScreen).toHaveBeenCalledTimes(1);
   });
 });

@@ -4,50 +4,57 @@ import { useAppContext } from '../context/AppContext';
 
 const ChatInput: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
-  const { addMessage, currentChat } = useAppContext();
+  const { addMessage, currentChat, createNewChatWithMessageAndResponse } = useAppContext();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (inputValue.trim() === '' || !currentChat) return;
+    if (inputValue.trim() === '') return;
     
-    // Add user message
-    addMessage({
-      content: inputValue.trim(),
-      role: 'user',
-    });
+    const userMessage = inputValue.trim();
+    
+    // If no current chat exists, create a new one with both the user message and assistant response
+    if (!currentChat) {
+      createNewChatWithMessageAndResponse(userMessage);
+    } else {
+      // Add user message to existing chat
+      addMessage({
+        content: userMessage,
+        role: 'user',
+      });
+      
+      // Simulate AI response
+      setTimeout(() => {
+        addMessage({
+          content: `This is a simulated response to: "${userMessage}"`,
+          role: 'assistant',
+        });
+      }, 1000);
+    }
     
     // Clear input
     setInputValue('');
-    
-    // Simulate AI response (in a real app, this would come from the backend)
-    setTimeout(() => {
-      addMessage({
-        content: `This is a simulated response to: "${inputValue.trim()}"`,
-        role: 'assistant',
-      });
-    }, 1000);
   };
 
   return (
-    <div className="border-t border-gray-800 bg-primary p-2">
+    <div className="border-t border-gray-700 bg-gray-900 p-4">
       <form 
         onSubmit={handleSubmit}
-        className="flex items-center gap-2"
+        className="flex items-center max-w-3xl mx-auto relative"
       >
         <input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Type your message here..."
-          className="flex-1 bg-primary-light text-white rounded-full px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-accent"
+          placeholder="Message Inventory Analyzer AI..."
+          className="w-full bg-gray-800 text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 hover:border-gray-600 transition-colors pr-12"
         />
         <button
           type="submit"
           disabled={inputValue.trim() === ''}
-          className="bg-accent hover:bg-accent-light disabled:bg-gray-700 disabled:cursor-not-allowed p-2 rounded-full transition-colors"
+          className="absolute right-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white p-2 rounded-lg transition-colors flex items-center justify-center"
         >
-          <PaperAirplaneIcon className="h-5 w-5 text-white" />
+          <PaperAirplaneIcon className="h-4 w-4" />
         </button>
       </form>
     </div>
