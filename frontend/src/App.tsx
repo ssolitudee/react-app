@@ -57,7 +57,7 @@ const AppContent: React.FC = () => {
           )}
           
           {/* Content area with bottom padding to avoid overlap with fixed input */}
-          <div className="h-full overflow-hidden pb-20">
+          <div className="h-full overflow-y-auto pb-20">
             {!currentChat ? (
               <div className="h-full flex flex-col">
                 {/* Welcome screen content */}

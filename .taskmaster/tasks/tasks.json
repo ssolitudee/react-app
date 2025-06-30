@@ -5,7 +5,7 @@
         "id": 1,
         "title": "Setup Project Repository and Development Environment",
         "description": "Initialize the project repository and set up the development environment for both frontend and backend.",
-        "status": "in-progress",
+        "status": "done",
         "dependencies": [],
         "priority": "high",
         "details": "1. Create a new Git repository\n2. Create project structure with separate frontend and backend directories:\n   ```\n   inventory-analyzer-ai/\n   ├── frontend/         # React application\n   ├── backend/          # FastAPI application\n   └── README.md\n   ```\n3. Set up a React project in the frontend directory using Create React App v5.1.0 with React v18.2.0\n4. Initialize a Python virtual environment (Python 3.11+) in the backend directory\n5. Set up FastAPI v0.115.12 with Uvicorn v0.29.0 in the backend directory\n6. Configure ESLint v8.56.0 and Prettier v3.2.5 for the frontend project\n7. Install Tailwind CSS v3.4.1 in the frontend project\n8. Create a README.md at the project root with setup instructions for both frontend and backend\n9. Ensure Node.js v22.16.0 and npm v10.9.2 are used for frontend development",
@@ -16,7 +16,7 @@
         "id": 2,
         "title": "Implement Basic Frontend UI Components",
         "description": "Create the foundational UI components for the chat interface using React 18.2.0 and Tailwind CSS 3.4.1.",
-        "status": "pending",
+        "status": "done",
         "dependencies": [
           1
         ],
@@ -29,7 +29,7 @@
         "id": 3,
         "title": "Develop Backend API Structure",
         "description": "Set up the basic structure for the backend API using FastAPI, including routing and basic error handling.",
-        "status": "pending",
+        "status": "done",
         "dependencies": [
           1
         ],
@@ -48,13 +48,13 @@
         "dependencies": [
           2
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": []
       },
       {
         "id": 5,
-        "title": "Set Up LangChain Integration",
-        "description": "Integrate LangChain into the backend for AI processing and agent specialization.",
+        "title": "Build LangChain-based Chatbot Backend",
+        "description": "Create a chatbot backend with two specialized agents using LangChain and GPT-4o mini.",
         "status": "pending",
         "dependencies": [
           3
@@ -222,7 +222,7 @@
     ],
     "metadata": {
       "created": "2025-06-17T22:37:48.706Z",
-      "updated": "2025-06-17T22:59:58.092Z",
+      "updated": "2025-06-29T21:17:26.722Z",
       "description": "Tasks for master context"
     }
   }

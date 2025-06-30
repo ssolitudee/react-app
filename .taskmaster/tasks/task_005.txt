@@ -1,19 +1,16 @@
 # Task ID: 5
-# Title: Set Up LangChain Integration
+# Title: Build LangChain-based Chatbot Backend
 # Status: pending
 # Dependencies: 3
 # Priority: high
-# Description: Integrate LangChain into the backend for AI processing and agent specialization.
+# Description: Create a chatbot backend with two specialized agents using LangChain and GPT-4o mini.
 # Details:
 1. Install LangChain v0.1.11 and required dependencies
-2. Set up connection to language models (e.g., OpenAI GPT-3.5-turbo)
-3. Create base agent class with common functionality
-4. Implement Summary Agent for concise data analysis using LangChain's summarization capabilities
-5. Implement Chatbot Agent for interactive conversations using LangChain's conversational chains
-6. Create factory method for agent selection and specialization
-7. Implement prompt templates for each agent type
-8. Create utility functions for processing inventory data
-9. Implement proper error handling for AI responses
+2. Connect backend to GPT-4o mini LLM and verify it provides answers
+3. Implement Summary Agent that can condense information
+4. Implement Chatbot Agent with a financial advisor prompt
+5. Add agent selection logic for switching between agents
+6. Add error handling and response formatting
 
 # Test Strategy:
-Write unit tests for agent creation and specialization. Test with sample inputs to ensure correct agent behavior and output formatting. Include tests for inventory data processing utilities and error handling mechanisms.
+Test direct connection to GPT-4o mini to verify API integration. Test each agent with sample queries and verify appropriate responses. Ensure the agent selection works correctly based on request type. Test error handling for API failures and invalid requests.

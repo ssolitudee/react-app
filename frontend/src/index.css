@@ -16,3 +16,57 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-900 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-700 rounded-full transition-colors duration-300;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-600;
+}
+
+::-webkit-scrollbar-corner {
+  @apply bg-gray-900;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #374151 #111827;
+}
+
+/* Custom scrolling behavior */
+.smooth-scroll {
+  @apply scroll-smooth;
+}
+
+/* Custom scroll styles for chat container */
+.chat-container {
+  @apply scroll-smooth;
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+/* Animation for scroll button */
+@keyframes bounce-gentle {
+  0%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  50% {
+    transform: translateY(-4px) translateX(-50%);
+  }
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 2s infinite ease-in-out;
+}
