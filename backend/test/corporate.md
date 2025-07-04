@@ -26,7 +26,7 @@ In addition to those, we introduce following arguments to set up which OpenAI Re
 
 `environment`: The environment variable is to switch between DEV and PROD instances of Risklab. Unless you are a Risklab developer, this parameter should not be useful to you as there are limitations on the nature of data that can be sent to the DEV endpoints.
 
-`deployment_name` (for `langchain` and `llamaindex`) and `model` (for `vanilla client`): This parameter defaults to `gpt` for chat models and `ada` for embedding models. This parameter should be set in order to use vanilla OpenAI API and also sometimes should be set if the OpenAI Rental endpoint has a more than one model for a model type. For instance, if the OpenAI Rental Endpoint has `gpt3.5-turbo` and `gpt4` at the same time, the `deployment` name should be changed accordingly in order to point to the right model. Available models for each model is listed at the table https://www.google.com/search?q=linked above.
+`deployment_name` (for `langchain` and `llamaindex`) and `model` (for `vanilla client`): This parameter defaults to `gpt` for chat models and `ada` for embedding models. This parameter should be set in order to use vanilla OpenAI API and also sometimes should be set if the OpenAI Rental endpoint has a more than one model for a model type. For instance, if the OpenAI Rental Endpoint has `gpt3.5-turbo` and `gpt4` at the same time, the `deployment` name should be changed accordingly in order to point to the right model.
 
 ## API Key
 
@@ -38,7 +38,7 @@ As for Risklab Gateway and Risklab Vector Store, one can use Gitlab Personal Acc
 
 Bases: AzureOpenAI
 
-[Source code in `risklab/openai/__init__.py`](https://www.google.com/search?q=risklab/openai/__init__.py)
+[Source code in `risklab/openai/__init__.py`]
 
 `risklab.openai.langchain`
 
@@ -46,7 +46,7 @@ Bases: AzureOpenAI
 
 Bases: AzureOpenAI
 
-[Source code in `risklab/openai/langchain/llm.py`](https://www.google.com/search?q=risklab/openai/langchain/llm.py)
+[Source code in `risklab/openai/langchain/llm.py`]
 
 `organization_name` = `Field(default=None, alias='organization')` class-attribute instance-attribute
 
@@ -62,7 +62,7 @@ Validate that api key and python package exists in environment.
 
 Bases: AzureOpenAI
 
-[Source code in `risklab/openai/langchain/embeddings.py`](https://www.google.com/search?q=risklab/openai/langchain/embeddings.py)
+[Source code in `risklab/openai/langchain/embeddings.py`]
 
 ```python
 11 class RisklabOpenAIEmbeddings(AzureOpenAIEmbeddings):
@@ -101,7 +101,7 @@ Bases: AzureOpenAI
 
 Bases: AzureOpenAI
 
-[Source code in `risklab/openai/langchain/chat.py`](https://www.google.com/search?q=risklab/openai/langchain/chat.py)
+[Source code in `risklab/openai/langchain/chat.py`]
 
 `organization_name` = `Field(default=None, alias='organization')` class-attribute instance-attribute
 
@@ -141,7 +141,6 @@ Validate that api key and python package exists in environment.
 
 # Examples
 
-Example notebooks can be found [here](https://www.google.com/search?q=link).
 
 Usage is pretty simple, default constructors should work without determining organization or environment. Please refer to the configuration tab in order to see which options are available. These classes inherit AzureOpenAI classes, so please refer to the documentation of each library in order to see which parameters are available. Here is a LLM example with langchain:
 
