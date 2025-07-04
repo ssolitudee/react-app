@@ -8,7 +8,6 @@ dev-debug.log
 
 # Dependency directories
 node_modules/
-samples/
 
 # Environment variables
 .env
@@ -21,12 +20,17 @@ samples/
 *.njsproj
 *.sln
 *.sw?
+
+# IDE and development tool directories
 .cursor
 .roo
 .taskmaster
 .windsurf
 .roomodes
 .windsurfrules
+
+# Sample files
+samples/
 
 # OS specific
 .DS_Store
